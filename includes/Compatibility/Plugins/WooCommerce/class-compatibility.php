@@ -142,7 +142,8 @@ class Compatibility extends Base_Compatibility {
 	public function woo_get_video( $html, $post_thumbnail_id, $is_loop = false ) {
 		global $product;
 
-		if ( $this->counter > 0 ) {
+		if ( $this->counter != 4 ) {
+			$this->counter++;
 			return $html;
 		}
 
@@ -173,7 +174,7 @@ class Compatibility extends Base_Compatibility {
 		$has_controls = is_array( $video_controls ) && isset( $video_controls['controls'] );
 
 		if ( ! empty( $post_types ) ) {
-			if ( in_array( $post_type, $post_types, true ) && ( 0 === $this->counter || $is_loop ) ) {
+			if ( in_array( $post_type, $post_types, true ) ) {
 
 				if ( 'self' === $video_source ) {
 					$media_id  = get_post_meta( $product->get_id(), RSFV_META_KEY, true );
@@ -200,7 +201,7 @@ class Compatibility extends Base_Compatibility {
 					$has_controls = $has_controls ? 'controls=1&' : 'controls=0&';
 
 					if ( $embed_url ) {
-						$html = '<div class="woocommerce-product-gallery__image rsfv-video__wrapper" data-thumb="' . RSFV_PLUGIN_URL . 'assets/images/video_frame.png"><iframe width="100%" height="540" src="' . $embed_url . "?{$has_controls}{$is_autoplay}{$is_loop}{$is_muted}{$is_pip}" . '" allow="" frameborder="0"></iframe></div>' . $html;
+						$html = '<div class="woocommerce-product-gallery__image rsfv-video__wrapper" data-thumb="' . RSFV_PLUGIN_URL . 'assets/images/video_frame.png"><iframe width="100%" height="540" src="' . $embed_url . "?{$has_controls}{$is_autoplay}{$is_loop}{$is_muted}{$is_pip}" . '" allow="" frameborder="0"></iframe></div>' .$html;
 					}
 				}
 
