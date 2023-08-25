@@ -142,6 +142,10 @@ class Compatibility extends Base_Compatibility {
 	public function woo_get_video( $html, $post_thumbnail_id, $is_loop = false ) {
 		global $product;
 
+		if ( $this->counter > 0 ) {
+			return $html;
+		}
+
 		$post_type = get_post_type( $product->get_id() ) ?? 'product';
 
 		// Get enabled post types.
